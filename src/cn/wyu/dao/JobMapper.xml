@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace:该mapper.xml映射文件的 唯一标识 -->
+<mapper namespace="cn.wyu.dao.JobMapper">
+
+<insert id="addJob" parameterType="cn.wyu.pojo.Job">
+insert into job(name,remark) values(#{name},#{remark})
+</insert>
+
+<select id="queryJob" resultType="cn.wyu.pojo.Job">
+select * from job
+</select>	
+
+<update id="updateJobById" parameterType="cn.wyu.pojo.Job">
+update job set name=#{name},remark=#{remark} where id =#{id}
+</update>
+
+<delete id="deleteJobById" parameterType="int">
+delete from job where id =#{id}
+</delete>
+	
+</mapper>

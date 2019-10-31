@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace:该mapper.xml映射文件的 唯一标识 -->
+<mapper namespace="cn.wyu.dao.EmployeeMapper">
+	<select id="queryDeptIdAndName" resultType="cn.wyu.pojo.Dept">
+	select id,name from dept
+	</select>
+	
+	<select id="queryDeptNameById" resultType="String" parameterType="int" >
+	select name from dept where id =#{id}
+	</select>
+	
+	<select id="queryJobIdAndName" resultType="cn.wyu.pojo.Job">
+	select id,name from job
+	</select>
+	
+	<insert id="addEmployee" parameterType="cn.wyu.pojo.Employee">
+	INSERT INTO employee(dept_id,job_id,name,card_id,address,post_code,tel,phone,qq_num,email,sex,party,birthday,race,education,speciality,hobby,remark,create_date)
+        VALUES (#{deptId},#{jobId},#{name},#{cardId},#{address},#{postCode},#{tel},#{phone},#{qqNum},#{email},#{sex},#{party},#{birthday},#{race},#{education},#{speciality},#{hobby},#{remark},NOW())
+	</insert>
+	
+	<select id="queryEmp" resultType="cn.wyu.pojo.Employee">
+	select * from employee
+	</select>
+	
+	<delete id="deleteEmpById" parameterType="int">
+	delete from employee where id = #{id}
+	</delete>
+	
+	<update id="updateEmpById" parameterType="cn.wyu.pojo.Employee">
+	update employee
+    set dept_id = #{deptId},
+      job_id = #{jobId},
+      name = #{name},
+      card_id = #{cardId},
+      address = #{address},
+      post_code = #{postCode},
+      tel = #{tel},
+      phone = #{phone},
+      qq_num = #{qqNum},
+      email = #{email},
+      sex = #{sex},
+      party = #{party},
+      birthday = #{birthday},
+      race = #{race},
+      education = #{education},
+      speciality = #{speciality},
+      hobby = #{hobby},
+      remark = #{remark}
+    	where id = #{id}
+	</update>
+	
+</mapper>

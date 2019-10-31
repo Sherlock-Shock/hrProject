@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace:该mapper.xml映射文件的 唯一标识 -->
+<mapper namespace="cn.wyu.dao.NoticeMapper">
+<insert id="addNotice" parameterType="cn.wyu.pojo.Notice">
+insert into notice(name,title,content) values(#{name},#{title},#{content})
+</insert>
+	
+<select id="queryNotice" resultType="cn.wyu.pojo.Notice">
+select * from notice
+</select>	
+
+<select id="queryNoticeById" resultType="cn.wyu.pojo.Notice" parameterType="int">
+select * from notice where id = #{id}
+</select>
+
+</mapper>

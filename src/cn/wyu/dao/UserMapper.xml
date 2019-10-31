@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace:该mapper.xml映射文件的 唯一标识 -->
+<mapper namespace="cn.wyu.dao.UserMapper">
+
+	
+	
+	
+	<select id="queryUserByNumber" resultType="cn.wyu.pojo.User" parameterType="String" >
+		select * from user where number = #{number}
+	</select>
+	
+	<select id="queryUser" resultType="cn.wyu.pojo.User"  >
+		select * from user 
+	</select>
+	
+	<select id="queryUserByPhone" resultType="cn.wyu.pojo.User" parameterType="String" >
+		select * from user where phone = #{phone}
+	</select>
+	
+	
+	<select id="queryUserByPhoneAndPsw" resultType="cn.wyu.pojo.User" parameterType="Map">
+		select * from user where phone = #{phone} and password = #{password}
+	</select>
+	
+	<insert id="addUser"  parameterType="cn.wyu.pojo.User" >
+	insert into user(number,password,status,phone,username,createdate,remark) values(#{number},#{password},#{status},#{phone},#{username},#{createdate},#{remark}) 
+	
+	</insert>
+	
+	<update id="updateUserByNumber" parameterType="cn.wyu.pojo.User">
+	update user set username=#{username},password=#{password},status=#{status} where number=#{number}
+	</update>
+	
+	<delete id="deleteUserByNumber" parameterType="int">
+	delete from user where number=#{number}
+	</delete>
+	
+	<select id="queryUserByNumberAndUsernameAndStatus" parameterType="cn.wyu.pojo.User" resultType="cn.wyu.pojo.User">
+	select * from user 
+		<where>
+			<if test="number!=null and number !=''">
+			and number=#{number}
+			</if>
+			<if test="username!=null and username !=''">
+			and username like concat('%',#{username},'%')
+			</if>
+			<if test="status!=null and status !=4">
+			and status =#{status}
+			</if>
+
+		</where>
+	</select>
+	
+</mapper>
